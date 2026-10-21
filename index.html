@@ -1,0 +1,292 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>電材発注 - 電気工事の材料発注を、現場から5分で</title>
+<meta name="description" content="電気工事の材料発注アプリ。現場での呼び方で品番が探せて、喋った文章を貼るだけで発注メールが作れます。施工管理歴30年の現場から生まれました。" />
+<meta property="og:title" content="電材発注 - 電気工事の材料発注を、現場から5分で" />
+<meta property="og:description" content="「ブイブイエフ」「リンスリ」でも品番が出る。喋った文章を貼るだけで発注メールが完成。iPhone用・買い切り800円。" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@700;900&family=Noto+Sans+JP:wght@400;500;700&display=swap" />
+<style>
+  :root {
+    --navy: #0f172a;
+    --navy-soft: #1e293b;
+    --amber: #fbbf24;
+    --amber-deep: #b45309;
+    --stone: #faf9f7;
+    --surface: #ffffff;
+    --ink: #1c1917;
+    --muted: #78716c;
+    --line: #e7e5e4;
+    --display: "Zen Kaku Gothic New", "Hiragino Sans", "Yu Gothic", sans-serif;
+    --body: "Noto Sans JP", "Hiragino Sans", "Yu Gothic", sans-serif;
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: var(--stone);
+    color: var(--ink);
+    font-family: var(--body);
+    font-size: 16px;
+    line-height: 1.9;
+  }
+  img, svg { max-width: 100%; }
+  .wrap { max-width: 720px; margin: 0 auto; padding-inline: 20px; }
+
+  h1, h2, h3 { font-family: var(--display); margin: 0; text-wrap: balance; }
+
+  /* ── ヘッダー ── */
+  .bar { background: var(--navy); }
+  .bar .wrap { display: flex; align-items: center; gap: 12px; padding-block: 16px; }
+  .tile {
+    width: 44px; height: 44px; flex: none; border-radius: 10px;
+    background: var(--amber); display: grid; place-items: center;
+  }
+  .tile svg { width: 26px; height: 26px; }
+  .brand { font-family: var(--display); font-weight: 900; font-size: 19px; color: #fff; line-height: 1.3; }
+  .brand span { display: block; font-family: var(--body); font-weight: 400; font-size: 11px; letter-spacing: .14em; color: var(--amber); }
+
+  /* ── ヒーロー ── */
+  .hero { background: var(--navy); color: #fff; }
+  .hero .wrap { padding-block: 8px 44px; }
+  .hero h1 { font-size: 30px; font-weight: 900; line-height: 1.5; letter-spacing: .01em; }
+  .hero h1 em { font-style: normal; color: var(--amber); }
+  .hero .sub { color: #cbd5e1; font-size: 15px; margin: 16px 0 0; }
+
+  /* ── 実演ブロック ── */
+  .demo { margin-top: 28px; border: 1px solid #334155; border-radius: 6px; overflow: hidden; }
+  .demo-label {
+    background: var(--navy-soft); color: #94a3b8;
+    font-size: 11px; letter-spacing: .14em; font-weight: 700;
+    padding: 9px 16px;
+  }
+  .demo-say {
+    background: var(--navy-soft); color: #fff; font-size: 15px;
+    padding: 0 16px 16px; line-height: 1.85;
+  }
+  .demo-arrow {
+    background: var(--amber); color: var(--navy);
+    font-weight: 700; font-size: 12.5px; text-align: center; padding: 7px;
+    letter-spacing: .06em;
+  }
+  .demo-rows { background: #fff; }
+  .row {
+    display: grid; grid-template-columns: 1fr auto; gap: 10px;
+    padding: 13px 16px; border-bottom: 1px solid var(--line); align-items: center;
+  }
+  .row:last-child { border-bottom: none; }
+  .row-name { font-weight: 700; font-size: 15px; color: var(--ink); line-height: 1.5; }
+  .row-spec { font-size: 12px; color: var(--muted); line-height: 1.6; }
+  .row-qty {
+    font-weight: 700; font-size: 17px; color: var(--ink);
+    font-variant-numeric: tabular-nums; white-space: nowrap;
+  }
+  .row-qty small { font-size: 12px; font-weight: 500; color: var(--muted); margin-left: 2px; }
+
+  /* ── ボタン ── */
+  .cta {
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+    background: var(--amber); color: var(--navy);
+    font-family: var(--display); font-weight: 900; font-size: 16px;
+    text-decoration: none; padding: 16px 28px; border-radius: 6px;
+    min-height: 56px; width: 100%; margin-top: 24px;
+  }
+  .cta:hover { filter: brightness(1.06); }
+  .cta-note { font-size: 12.5px; color: #94a3b8; margin: 10px 0 0; text-align: center; }
+  .cta.on-light { background: var(--navy); color: var(--amber); }
+  .cta.on-light + .cta-note { color: var(--muted); }
+
+  /* ── 本文セクション ── */
+  section { padding-block: 44px; }
+  section + section { border-top: 1px solid var(--line); }
+  .eyebrow {
+    font-size: 11px; letter-spacing: .18em; font-weight: 700;
+    color: var(--amber-deep); margin: 0 0 10px;
+  }
+  h2 { font-size: 23px; font-weight: 900; line-height: 1.55; }
+  .lede { color: var(--muted); font-size: 14.5px; margin: 12px 0 0; }
+
+  .features { display: flex; flex-direction: column; gap: 16px; margin-top: 26px; }
+  .feature {
+    background: var(--surface); border: 1px solid var(--line);
+    border-left: 4px solid var(--amber); border-radius: 4px;
+    padding: 20px;
+  }
+  .feature h3 { font-size: 17px; font-weight: 700; line-height: 1.6; }
+  .feature p { font-size: 14.5px; margin: 10px 0 0; }
+  .sample {
+    margin-top: 14px; padding: 12px 14px; background: var(--stone);
+    border-radius: 4px; font-size: 14px; line-height: 1.85;
+  }
+  .sample b { color: var(--amber-deep); }
+  .sample .to { color: var(--muted); font-size: 12.5px; display: block; margin: 4px 0; }
+
+  .facts { display: flex; flex-direction: column; gap: 0; margin-top: 24px; }
+  .fact {
+    display: grid; grid-template-columns: 112px 1fr; gap: 14px;
+    padding: 14px 0; border-bottom: 1px solid var(--line); align-items: baseline;
+  }
+  .fact:last-child { border-bottom: none; }
+  .fact dt { font-weight: 700; font-size: 13.5px; color: var(--muted); }
+  .fact dd { margin: 0; font-size: 15px; }
+  .fact dd strong { font-family: var(--display); font-weight: 900; font-size: 19px; }
+
+  .maker { background: var(--surface); border: 1px solid var(--line); border-radius: 4px; padding: 22px; margin-top: 24px; }
+  .maker p { font-size: 14.5px; margin: 0 0 12px; }
+  .maker p:last-child { margin-bottom: 0; }
+
+  footer {
+    background: var(--navy); color: #94a3b8;
+    font-size: 13px; padding-block: 32px;
+  }
+  footer .wrap { display: flex; flex-direction: column; gap: 10px; }
+  footer a { color: var(--amber); }
+  footer .links { display: flex; gap: 18px; flex-wrap: wrap; }
+
+  @media (max-width: 420px) {
+    .hero h1 { font-size: 25px; }
+    h2 { font-size: 20px; }
+    .fact { grid-template-columns: 1fr; gap: 2px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="bar">
+  <div class="wrap">
+    <div class="tile">
+      <svg viewBox="0 0 24 24" fill="#0f172a"><path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"/></svg>
+    </div>
+    <div class="brand">電材発注<span>DENZAI ORDER</span></div>
+  </div>
+</div>
+
+<div class="hero">
+  <div class="wrap">
+    <h1>材料の発注を、<br><em>現場から5分で</em>終わらせる。</h1>
+    <p class="sub">電気工事の材料発注アプリです。事務所に戻ってメールを手打ちする時間を、現場を出る前の数分に変えます。</p>
+
+    <div class="demo">
+      <div class="demo-label">現場で言ったこと</div>
+      <div class="demo-say">「VVFの1.6ミリ2芯を5巻、PF管16を10巻、リングスリーブ小を1箱」</div>
+      <div class="demo-arrow">↓ 貼り付けるだけ</div>
+      <div class="demo-rows">
+        <div class="row">
+          <div>
+            <div class="row-name">VVF 1.6mm-2C</div>
+            <div class="row-spec">富士電線 / 100m巻</div>
+          </div>
+          <div class="row-qty">5<small>巻</small></div>
+        </div>
+        <div class="row">
+          <div>
+            <div class="row-name">PF管 16</div>
+            <div class="row-spec">パナソニック / 30m巻</div>
+          </div>
+          <div class="row-qty">10<small>巻</small></div>
+        </div>
+        <div class="row">
+          <div>
+            <div class="row-name">リングスリーブ 小</div>
+            <div class="row-spec">ニチフ / 100個入</div>
+          </div>
+          <div class="row-qty">1<small>箱</small></div>
+        </div>
+      </div>
+    </div>
+
+    <a class="cta" href="https://apps.apple.com/jp/app/id6788405189">App Storeで見る</a>
+    <p class="cta-note">iPhone用 / 買い切り800円 / 月額なし</p>
+  </div>
+</div>
+
+<section>
+  <div class="wrap">
+    <p class="eyebrow">できること</p>
+    <h2>品番を覚えていなくても、<br>注文できます。</h2>
+    <p class="lede">現場で実際に使われている言葉から引けるように作りました。</p>
+
+    <div class="features">
+      <div class="feature">
+        <h3>現場の言い方で品番が出る</h3>
+        <p>正式名称ではなく、普段の呼び方で探せます。121品目それぞれに、現場での呼び方を742個登録しました。</p>
+        <div class="sample">
+          <b>「ブイブイエフ」「VA線」「1.6の2芯」</b>
+          <span class="to">↓ どれで打っても</span>
+          VVF 1.6mm-2C
+        </div>
+      </div>
+
+      <div class="feature">
+        <h3>喋った文章を、そのまま貼るだけ</h3>
+        <p>音声で書き起こした文章やメモを貼り付けると、品番と数量をまとめて読み取ります。読み取った内容は必ず画面で確認してからカートに入るので、気づかないうちに違うものが入ることはありません。</p>
+      </div>
+
+      <div class="feature">
+        <h3>単位の間違いを教えてくれる</h3>
+        <p>巻・箱・袋の取り違えは、そのまま誤発注になります。換算できるものは換算して、必ず画面に出します。黙って数字を変えることはしません。</p>
+        <div class="sample">
+          <b>「VVF 1.6-2C を300m」</b>
+          <span class="to">↓ 100m巻なので</span>
+          3巻に換算しました
+        </div>
+      </div>
+
+      <div class="feature">
+        <h3>メールでも、ショートメールでも、LINEでも</h3>
+        <p>できた発注内容は、いつものメールアプリからそのまま送れます。メールを見ない相手には、ショートメールやLINEでも送れます。<strong>受け取る代理店側の準備は一切不要です。</strong></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="eyebrow">データの扱い</p>
+    <h2>全部、端末の中だけ。</h2>
+    <p class="lede">取引先や発注内容は、仕事の情報です。外に出す設計にはしていません。</p>
+
+    <dl class="facts">
+      <div class="fact"><dt>サーバー送信</dt><dd>ありません。外部と通信しません</dd></div>
+      <div class="fact"><dt>アカウント</dt><dd>登録不要。メールアドレスも聞きません</dd></div>
+      <div class="fact"><dt>オフライン</dt><dd>電波が悪い現場でも品番を確認できます</dd></div>
+      <div class="fact"><dt>価格</dt><dd><strong>800円</strong> 買い切り / 月額なし</dd></div>
+      <div class="fact"><dt>対応</dt><dd>iPhone・iPad（iOS）</dd></div>
+    </dl>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="eyebrow">作った人</p>
+    <h2>現場の人間が、<br>自分のために作りました。</h2>
+
+    <div class="maker">
+      <p>施工管理歴30年。毎日の材料発注に1時間近くかかっていました。品番を調べて、メールに手打ちして、間違えていないか見直す。現場が終わってから事務所でやる作業です。</p>
+      <p>品番の打ち間違いで違うものが届いたことも、一度や二度ではありません。</p>
+      <p>それが嫌で、自分用に作ったのがこのアプリです。プログラミングは未経験で、AIに教わりながら週末に少しずつ作りました。毎日自分の現場で使っています。</p>
+    </div>
+
+    <a class="cta on-light" href="https://apps.apple.com/jp/app/id6788405189">App Storeで見る</a>
+    <p class="cta-note">iPhone用 / 買い切り800円 / 月額なし</p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="links">
+      <a href="./support.html">サポート・お問い合わせ</a>
+      <a href="./privacy.html">プライバシーポリシー</a>
+    </div>
+    <div>電材発注 — 電気工事の材料発注アプリ</div>
+  </div>
+</footer>
+
+</body>
+</html>
